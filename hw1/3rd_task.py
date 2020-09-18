@@ -1,9 +1,9 @@
-from math import e
+from math import exp
 
 
 def min_trisection(a, b, c, d, precision=1e-4):
     def f(x):
-        return e ** (a * x) + e ** (-b * x) + c * (x - d) ** 2
+        return exp(a * x) + exp(-b * x) + c * (x - d) ** 2
 
     l, r = -abs(10 * d), abs(10 * d)
     while r - l > 2 * precision:
@@ -19,10 +19,10 @@ def min_trisection(a, b, c, d, precision=1e-4):
 
 def min_bisection(a, b, c, d, precision=1e-4):
     def f(x):
-        return e ** (a * x) + e ** (-b * x) + c * (x - d) ** 2
+        return exp(a * x) + exp(-b * x) + c * (x - d) ** 2
 
     def derivative(x):
-        return a * e ** (a * x) - b * e ** (-b * x) + 2 * c * (x - d)
+        return a * exp(a * x) - b * exp(-b * x) + 2 * c * (x - d)
 
     l, r = -abs(10 * d), abs(10 * d)
     while r - l > 2 * precision:
@@ -37,13 +37,13 @@ def min_bisection(a, b, c, d, precision=1e-4):
 
 def min_newton(a, b, c, d, iteration_n=1000):
     def f(x):
-        return e ** (a * x) + e ** (-b * x) + c * (x - d) ** 2
+        return exp(a * x) + exp(-b * x) + c * (x - d) ** 2
 
     def derivative(x):
-        return a * e ** (a * x) - b * e ** (-b * x) + 2 * c * (x - d)
+        return a * exp(a * x) - b * exp(-b * x) + 2 * c * (x - d)
 
     def snd_derivative(x):
-        return a ** 2 * e ** (a * x) + b ** 2 * e ** (-b * x) + 2 * c
+        return a ** 2 * exp(a * x) + b ** 2 * exp(- b * x) + 2 * c
 
     cur = 10 * d
     for _ in range(iteration_n):
