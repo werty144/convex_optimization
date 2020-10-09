@@ -1,4 +1,6 @@
 def k_root_bisection(a, k, precision=1e-4):
+    assert a > 0
+
     def f(cur):
         return a - cur ** k
 
@@ -13,6 +15,9 @@ def k_root_bisection(a, k, precision=1e-4):
 
 
 def k_root_newton(a, k, iteration_n=1000):
+    if a < 0:
+        assert isinstance(k, int) and k % 2 == 1
+
     def f(x):
         return x ** k - a
 

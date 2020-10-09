@@ -4,8 +4,10 @@ class Polynom:
 
     def evaluate(self, x):
         res = 0
-        for i, param in enumerate(self.params):
-            res += param * x ** i
+        xi = 1
+        for param in self.params:
+            res += param * xi
+            xi *= x
         return res
 
     def derivative(self):
@@ -31,10 +33,11 @@ def root_in_seg(poly, l, r, precision=1e-4):
     assert poly.evaluate(l) * poly.evaluate(r) < 0
 
     def f(x):
+        val = poly.evaluate(x)
         if poly.evaluate(r) > 0:
-            return poly.evaluate(x)
+            return val
         else:
-            return -poly.evaluate(x)
+            return -val
 
     while r - l > precision * 2:
         m = (l + r) / 2
